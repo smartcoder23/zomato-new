@@ -14,12 +14,12 @@ var hello=mongoose.model("auth")
 var api = require('./routes/api');
  const server = require('http');
 var app = express();
+var http=require('http');
 app.use(cors());
+// require('dotenv').config()
 // const port=3001;
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-};
+// no
+app.use('/api', api);
  app.use(function (req, res, next) {
    res.setHeader('Access-Control-Allow-Origin');
   // res.setHeader('Access-Control-Allow-Methods', 'POST');
@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 // app.use('/forgot', express.static(path.join(__dirname, 'dist')));
 // app.use('/auth',auth); 
 
-app.use('/api', api);
+
 
 // app.get('/', function(req, res){
 //   res.sendFile(path.join(__dirname,fullPath,'index.html'));
@@ -68,9 +68,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send('error');
 });
-// const Server = app.createServer(app);
-// Server.listen(process.env.PORT || 5000)
+ 
+ app.listen(process.env.PORT || 5000)
 
-app.listen(process.env.PORT || 5000)
+// app.listen(process.env.PORT || 3000)
   
 module.exports = app;
