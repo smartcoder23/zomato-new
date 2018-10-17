@@ -19,14 +19,14 @@ app.use(cors());
 // require('dotenv').config()
 // const port=3001;
 // no
-app.use('/api', api);
- app.use(function (req, res, next) {
-   res.setHeader('Access-Control-Allow-Origin');
-  // res.setHeader('Access-Control-Allow-Methods', 'POST');
-  // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-   next();
- });
+
+  // app.use(function (req, res, next) {
+    // res.setHeader('Access-Control-Allow-Origin');
+//   // res.setHeader('Access-Control-Allow-Methods', 'POST');
+//   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+// //   res.setHeader('Access-Control-Allow-Credentials', true);
+    // next();
+  // });
 
 mongoose.connect(config.database)
   .then(() =>  console.log('connection succesful'))
@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 // app.use('/books', express.static(path.join(__dirname, 'dist')));
 // app.use('/forgot', express.static(path.join(__dirname, 'dist')));
 // app.use('/auth',auth); 
-
+app.use('/api', api);
 
 
 // app.get('/', function(req, res){
