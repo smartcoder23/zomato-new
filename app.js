@@ -15,7 +15,7 @@ var api = require('./routes/api');
  const server = require('http');
 var app = express();
 app.use(cors());
-const port=3001;
+// const port=3001;
 var corsOptions = {
   origin: '*',
   optionsSuccessStatus: 200
@@ -27,8 +27,8 @@ var corsOptions = {
 //   res.setHeader('Access-Control-Allow-Credentials', true);
    next();
  });
-mongoose.Promise = require('bluebird');
-mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
+
+mongoose.connect(config.database)
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 
