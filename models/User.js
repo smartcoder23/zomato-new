@@ -1,13 +1,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
-
+var uniqueValidator = require('mongoose-unique-validator');
 var UserSchema = new Schema({
   username: {
         type: String,
         unique: true,
-        required: true
-    },
+        required: true,
+     required: true ,type:String,uniqueCaseInsensitive: true
+        ,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+        
+        },
+    
   password: {
         type: String,
         required: true
@@ -44,5 +49,5 @@ UserSchema.methods.comparePassword = function (passw, cb) {
         cb(null, isMatch);
     });
 };
-
+UserSchema.plugin(uniqueValidator);
 module.exports = mongoose.model('User', UserSchema);

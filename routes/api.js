@@ -15,15 +15,15 @@ async = require('async');
 crypto = require('crypto');
 bcrypt =require('bcrypt')
 var waterfall = require('async-waterfall');
-
+require('dotenv').config()
 
 // var salt = bcryptNodejs.genSaltSync(10);
 //  var hash = bcryptNodejs.hashSync("bacon", salt);
 var smtpTransport = nodemailer.createTransport({
   service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
   auth: {
-    user: "shubhamsethikcm@gmail.com",
-    pass:"turing machine"
+    user: "",
+    pass:""
   }
 });
 
@@ -116,7 +116,7 @@ router.post('/forgotpass' ,function(req, res) {
         template: 'reset',
         subject: 'Password help has arrived!',
         html: `<h2>Password change link<h2>
-         http://localhost:4200/reset/${token} `
+        http://localhost:4200/reset/${token} `
         // context: {
         //   url: 'http://localhost:4200/reset?token=' + token
         //   // .split(' ')[0]
@@ -170,7 +170,7 @@ router.post('/resetpassword' , function(req, res, next) {
               html: `<h3>Greetings!!<h3>
 
               <p> Your password is now reset<p>
-              <p>Redirect to login page <p>  http://localhost:4200`
+              <p>Redirect to login page <p> http://localhost:4200`
             };
 
             smtpTransport.sendMail(data, function(err) {

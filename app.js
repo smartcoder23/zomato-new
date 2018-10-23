@@ -16,7 +16,7 @@ var api = require('./routes/api');
 var app = express();
 var http=require('http');
 app.use(cors());
-// require('dotenv').config()
+ var a=require('dotenv').config()
 // const port=3001;
 // no
 
@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send('error');
 });
- 
+ console.log(a);
  app.listen(process.env.PORT || 5000)
 
 // app.listen(process.env.PORT || 3000)
